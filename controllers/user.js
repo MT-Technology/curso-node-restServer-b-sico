@@ -5,26 +5,21 @@ const bcriptjs = require('bcryptjs');
 
 const userGet = async(req = request, res = response) => {
 
-    try {
-        const { limit = 5, start = 0 } = req.query;
-        const query = { estado: true }
 
-        const [total, users] = await Promise.all([
-            User.countDocuments(query),
-            User.find(query)
-            .limit(Number(limit))
-            .skip(Number(start))
-        ]);
-        res.json({
-            total,
-            users
-        });
-    } catch (error) {
-        res.status(500).json({
-            msg: 'Ocurrio un error',
-            error
-        })
-    }
+    const { limit = 5, start = 0 } = req.query;
+    const query = { estado: true }
+
+    const [total, users] = await Promise.all([
+        User.countDocuments(query),
+        User.find(query)
+        .limit(Number(limit))
+        .skip(Number(start))
+    ]);
+    res.json({
+        total,
+        users
+    });
+
 }
 
 const userPost = async(req = request, res = response) => {

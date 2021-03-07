@@ -17,4 +17,9 @@ const dbConnection = async() => {
     }
 }
 
+const dbCloseConnection = () => {
+
+    mongoose.connection.close();
+}
+
 module.exports = { dbConnection }
