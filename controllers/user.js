@@ -20,7 +20,8 @@ const userGet = async(req = request, res = response) => {
             users
         });
     } catch (error) {
-        res.json({
+        res.status(500).json({
+            msg: 'Ocurrio un error',
             error
         })
     }
